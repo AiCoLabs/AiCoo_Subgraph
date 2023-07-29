@@ -191,7 +191,7 @@ type NewCollectionMintInfo @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type NewNFTCreated @entity(immutable: true) {
+type NewNFTCreated @entity {
   id: Bytes!
   tokenId: BigInt! # uint256
   collectionId: BigInt! # uint256

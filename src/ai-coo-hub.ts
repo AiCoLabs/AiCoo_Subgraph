@@ -1,3 +1,4 @@
+import { Bytes, store } from "@graphprotocol/graph-ts"
 import {
   AiCooRoyaltyDataSet as AiCooRoyaltyDataSetEvent,
   BaseInitialized as BaseInitializedEvent,
@@ -79,6 +80,12 @@ export function handleBaseInitialized(event: BaseInitializedEvent): void {
 export function handleBurnNFTFromCollection(
   event: BurnNFTFromCollectionEvent
 ): void {
+
+  let nft = NewNFTCreated.load(Bytes.fromUint8Array(event.params.collectionId).concat(Bytes.fromUint8Array(event.params.nftId)))
+  if(nft != null){
+    store.remove('NewNFTCreated', Bytes.fromUint8Array(event.params.collectionId).concat(Bytes.fromUint8Array(event.params.nftId)).toHexString());
+  }
+
   let entity = new BurnNFTFromCollection(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
@@ -317,7 +324,8 @@ export function handleNewCollectionCreated(
   event: NewCollectionCreatedEvent
 ): void {
   let entity = new NewCollectionCreated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    //event.transaction.hash.concatI32(event.logIndex.toI32())
+    Bytes.fromUint8Array(event.params.collectionId)
   )
   entity.collectionOwner = event.params.collectionOwner
   entity.collectionId = event.params.collectionId
@@ -339,7 +347,8 @@ export function handleNewCollectionMintInfo(
   event: NewCollectionMintInfoEvent
 ): void {
   let entity = new NewCollectionMintInfo(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    //event.transaction.hash.concatI32(event.logIndex.toI32())
+    Bytes.fromUint8Array(event.params.collectionId)
   )
   entity.collectionId = event.params.collectionId
   entity.mintLimit = event.params.mintLimit
@@ -356,7 +365,8 @@ export function handleNewCollectionMintInfo(
 
 export function handleNewNFTCreated(event: NewNFTCreatedEvent): void {
   let entity = new NewNFTCreated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    Bytes.fromUint8Array(event.params.collectionId).concat(Bytes.fromUint8Array(event.params.tokenId))
+    //event.transaction.hash.concatI32(event.logIndex.toI32())
   )
   entity.tokenId = event.params.tokenId
   entity.collectionId = event.params.collectionId
