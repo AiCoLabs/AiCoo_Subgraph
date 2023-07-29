@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "AiCooHub": {
+      "address": "0x062e741B10B80464cDf76452404484BbB166A952",
+      "startBlock": 3984643
+    }
+  }
+}
