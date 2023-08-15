@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: AiCooHub
-    network: sepolia
+    network: base-testnet
     source:
-      address: "0xD331249Dbc24E5a7625e232c000e2118A2875cbf"
       abi: AiCooHub
-      startBlock: 4092352
+      address: "0x2e1F211D853b20C0aa25Ed41af6250A3F678c67D"
+      startBlock: 8450040
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -38,21 +38,25 @@ dataSources:
         - name: AiCooHub
           file: ./abis/AiCooHub.json
       eventHandlers:
-        - event: AiCooRoyaltyDataSet(indexed address,indexed address,indexed uint32,uint256)
+        - event: AiCooRoyaltyDataSet(indexed address,indexed address,indexed
+            uint32,uint256)
           handler: handleAiCooRoyaltyDataSet
         - event: BaseInitialized(string,string,uint256)
           handler: handleBaseInitialized
         - event: BurnNFTFromCollection(uint256,uint256,address,address,uint256)
           handler: handleBurnNFTFromCollection
-        - event: CollectionFeeAddressSet(indexed address,indexed address,indexed address,uint256)
+        - event: CollectionFeeAddressSet(indexed address,indexed address,indexed
+            address,uint256)
           handler: handleCollectionFeeAddressSet
-        - event: CreateCollectionFeeSet(indexed address,indexed uint32,indexed uint32,uint256)
+        - event: CreateCollectionFeeSet(indexed address,indexed uint32,indexed
+            uint32,uint256)
           handler: handleCreateCollectionFeeSet
         - event: DerivedNFTInitialized(indexed uint256,uint256)
           handler: handleDerivedNFTInitialized
         - event: DerivedRuleModuleWhitelisted(address,bool,uint256)
           handler: handleDerivedRuleModuleWhitelisted
-        - event: EmergencyAdminSet(indexed address,indexed address,indexed address,uint256)
+        - event: EmergencyAdminSet(indexed address,indexed address,indexed
+            address,uint256)
           handler: handleEmergencyAdminSet
         - event: FeeModuleBaseConstructed(indexed address,uint256)
           handler: handleFeeModuleBaseConstructed
@@ -62,7 +66,8 @@ dataSources:
           handler: handleMaxRoyaltySet
         - event: ModuleBaseConstructed(indexed address,uint256)
           handler: handleModuleBaseConstructed
-        - event: ModuleGlobalsCurrencyWhitelisted(indexed address,indexed bool,indexed bool,uint256)
+        - event: ModuleGlobalsCurrencyWhitelisted(indexed address,indexed bool,indexed
+            bool,uint256)
           handler: handleModuleGlobalsCurrencyWhitelisted
         - event: ModuleGlobalsGovernanceSet(indexed address,indexed address,uint256)
           handler: handleModuleGlobalsGovernanceSet
@@ -70,7 +75,8 @@ dataSources:
           handler: handleModuleGlobalsTreasuryFeeSet
         - event: ModuleGlobalsTreasurySet(indexed address,indexed address,uint256)
           handler: handleModuleGlobalsTreasurySet
-        - event: NewCollectionCreated(indexed address,indexed uint256,uint256,uint8,address,string,address,uint256)
+        - event: NewCollectionCreated(indexed address,indexed
+            uint256,uint256,uint8,address,string,address,uint256)
           handler: handleNewCollectionCreated
         - event: NewCollectionMintInfo(uint256,uint256,uint256,uint256,bytes32)
           handler: handleNewCollectionMintInfo
