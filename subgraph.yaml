@@ -6,9 +6,9 @@ dataSources:
     name: AiCooHub
     network: sepolia
     source:
-      address: "0x062e741B10B80464cDf76452404484BbB166A952"
+      address: "0xD331249Dbc24E5a7625e232c000e2118A2875cbf"
       abi: AiCooHub
-      startBlock: 3984643
+      startBlock: 4092352
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -74,7 +74,7 @@ dataSources:
           handler: handleNewCollectionCreated
         - event: NewCollectionMintInfo(uint256,uint256,uint256,uint256,bytes32)
           handler: handleNewCollectionMintInfo
-        - event: NewNFTCreated(indexed uint256,indexed uint256,uint256,string)
+        - event: NewNFTCreated(indexed uint256,indexed uint256,uint256,address,string)
           handler: handleNewNFTCreated
         - event: StateSet(indexed address,indexed uint8,indexed uint8,uint256)
           handler: handleStateSet

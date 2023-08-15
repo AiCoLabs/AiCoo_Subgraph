@@ -83,7 +83,13 @@ export function handleBurnNFTFromCollection(
 
   let nft = NewNFTCreated.load(Bytes.fromUint8Array(event.params.collectionId).concat(Bytes.fromUint8Array(event.params.nftId)))
   if(nft != null){
-    store.remove('NewNFTCreated', Bytes.fromUint8Array(event.params.collectionId).concat(Bytes.fromUint8Array(event.params.nftId)).toHexString());
+    nft.nftInfoURI = ""
+    nft.creator = event.params.burner
+    nft.blockNumber = event.block.number
+    nft.blockTimestamp = event.block.timestamp
+    nft.transactionHash = event.transaction.hash
+    nft.save()
+    // store.remove('NewNFTCreated', Bytes.fromUint8Array(event.params.collectionId).concat(Bytes.fromUint8Array(event.params.nftId)).toHexString());
   }
 
   let entity = new BurnNFTFromCollection(
@@ -371,6 +377,7 @@ export function handleNewNFTCreated(event: NewNFTCreatedEvent): void {
   entity.tokenId = event.params.tokenId
   entity.collectionId = event.params.collectionId
   entity.derivedFrom = event.params.derivedFrom
+  entity.creator = event.params.creator
   entity.nftInfoURI = event.params.nftInfoURI
 
   entity.blockNumber = event.block.number

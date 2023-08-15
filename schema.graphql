@@ -196,6 +196,7 @@ type NewNFTCreated @entity {
   tokenId: BigInt! # uint256
   collectionId: BigInt! # uint256
   derivedFrom: BigInt! # uint256
+  creator: Bytes! # address
   nftInfoURI: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
